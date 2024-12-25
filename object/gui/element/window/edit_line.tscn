@@ -1,5 +1,11 @@
-[gd_scene format=3 uid="uid://cadurnpifdfnu"]
+[gd_scene load_steps=2 format=3 uid="uid://cadurnpifdfnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc3x4"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 0.568627)
 
 [node name="EditLine" type="LineEdit"]
 theme_override_font_sizes/font_size = 54
+theme_override_styles/normal = SubResource("StyleBoxFlat_xc3x4")
 placeholder_text = "Email"

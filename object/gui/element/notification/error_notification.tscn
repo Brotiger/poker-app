@@ -10,8 +10,8 @@ content_margin_bottom = 5.0
 bg_color = Color(0.823529, 0.168627, 0.0823529, 0.568627)
 
 [node name="ErrorNotification" type="Label"]
-offset_right = 342.0
-offset_bottom = 73.0
+offset_right = 368.0
+offset_bottom = 63.0
 theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = SubResource("StyleBoxFlat_c86vt")
 text = "Текст ошибки."

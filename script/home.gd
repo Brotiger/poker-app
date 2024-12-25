@@ -6,7 +6,6 @@ func _logout() -> void:
 	
 	self.visible = false
 
-
 func _hide() -> void:
 	self.visible = false
 
