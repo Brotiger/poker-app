@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6680dbb790009c042afd5dfb8f533791
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 366
+  packageName: Necromancer GUI
+  packageVersion: 1.0
+  assetPath: Assets/Necromancer GUI/Kingthings.txt
+  uploadId: 24521

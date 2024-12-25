@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cios2hxataogd"]
+
+[ext_resource type="Texture2D" uid="uid://bvuyrgnw4q7bn" path="res://asset/Necromancer GUI/controls/Label.tga" id="1_n2mkw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ah8xx"]
+content_margin_left = 160.0
+content_margin_top = 5.0
+content_margin_right = 160.0
+content_margin_bottom = 35.0
+texture = ExtResource("1_n2mkw")
+
+[node name="Label" type="Label"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 131.0
+offset_right = 468.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 54
+theme_override_styles/normal = SubResource("StyleBoxTexture_ah8xx")
+text = "Заголовок"
+horizontal_alignment = 1

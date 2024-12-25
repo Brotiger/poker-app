@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnxr6mjoqit3i"]
+
+[ext_resource type="Texture2D" uid="uid://bg62m4pd8jy6k" path="res://asset/Necromancer GUI/controls/buttonOver.tga" id="2_24x8e"]
+[ext_resource type="Texture2D" uid="uid://dq1d0l17bokcq" path="res://asset/Necromancer GUI/controls/button.tga" id="3_1qqlo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rei7l"]
+content_margin_left = 80.0
+content_margin_top = 15.0
+content_margin_right = 80.0
+content_margin_bottom = 45.0
+texture = ExtResource("3_1qqlo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3nwil"]
+content_margin_left = 80.0
+content_margin_top = 15.0
+content_margin_right = 80.0
+content_margin_bottom = 45.0
+texture = ExtResource("2_24x8e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jfgkc"]
+content_margin_left = 80.0
+content_margin_top = 15.0
+content_margin_right = 80.0
+content_margin_bottom = 45.0
+texture = ExtResource("3_1qqlo")
+
+[node name="Button" type="Button"]
+offset_right = 299.0
+offset_bottom = 134.0
+theme_override_colors/font_disabled_color = Color(0.431373, 0.356863, 0.278431, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.431373, 0.356863, 0.278431, 1)
+theme_override_colors/font_hover_color = Color(0.431373, 0.356863, 0.278431, 1)
+theme_override_colors/font_pressed_color = Color(0.431373, 0.356863, 0.278431, 1)
+theme_override_colors/font_focus_color = Color(0.431373, 0.356863, 0.278431, 1)
+theme_override_colors/font_color = Color(0.429678, 0.356097, 0.27711, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.356863, 0.278431, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 54
+theme_override_styles/hover = SubResource("StyleBoxTexture_rei7l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3nwil")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jfgkc")
+text = "Кнопка"

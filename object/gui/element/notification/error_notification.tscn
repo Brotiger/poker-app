@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmsoqdgrkyhac"]
+
+[ext_resource type="Script" path="res://script/notification.gd" id="2_8gi48"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86vt"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.823529, 0.168627, 0.0823529, 0.568627)
+
+[node name="ErrorNotification" type="Label"]
+offset_right = 342.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_c86vt")
+text = "Текст ошибки."
+autowrap_mode = 1
+script = ExtResource("2_8gi48")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
