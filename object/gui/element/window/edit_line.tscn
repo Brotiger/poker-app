@@ -1,11 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cadurnpifdfnu"]
+[gd_scene load_steps=3 format=3 uid="uid://cadurnpifdfnu"]
+
+[ext_resource type="Script" path="res://script/edit_line.gd" id="1_5bwed"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc3x4"]
 content_margin_left = 10.0
 content_margin_right = 10.0
 bg_color = Color(0, 0, 0, 0.568627)
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 0.72549)
 
 [node name="EditLine" type="LineEdit"]
+offset_right = 427.0
+offset_bottom = 89.0
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 54
 theme_override_styles/normal = SubResource("StyleBoxFlat_xc3x4")
 placeholder_text = "Email"
+script = ExtResource("1_5bwed")
+error_border_color = Color(1, 0, 0, 0.607843)

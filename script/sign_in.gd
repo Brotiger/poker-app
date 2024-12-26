@@ -2,7 +2,6 @@ extends Node
 
 @export var config: Node
 @export var http_request: HTTPRequest
-@export var error_field_color: Color
 
 @export var email_field: Node
 @export var password_field: Node
@@ -13,7 +12,7 @@ extends Node
 @export var error_notification: PackedScene
 
 var endpoint = "/api/auth/login"
-
+	
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if response_code == 0:
 		create_notification("Сервер не доступен.", error_notification)
@@ -34,19 +33,21 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			if data.has("message"):
 				create_notification(data.message, warn_notification)
 				
+			print(data)
 			if response_code == 401:
-				email_field.modulate = error_field_color
-				password_field.modulate = error_field_color
+				email_field.Error()
+				email_field.Error()
 			elif data.has("errors"):
 				if data.errors.has("email"):
-					email_field.modulate = error_field_color
+					print("+++")
+					email_field.Error()
 				else:
-					email_field.modulate = Color(1, 1, 1)
+					email_field.Default()
 					
 				if data.errors.has("password"):
-					password_field.modulate = error_field_color
+					password_field.Error()
 				else:
-					password_field.modulate = Color(1, 1, 1)
+					password_field.Default()
 
 func _on_sign_in_pressed() -> void:
 	var url = config.http_api_url + endpoint
@@ -69,7 +70,7 @@ func _show() -> void:
 
 func _hide() -> void:
 	self.visible = false
-	password_field.modulate = Color(1, 1, 1)
-	email_field.modulate = Color(1, 1, 1)
+	password_field.Default()
+	email_field.Default()
 	email_field.text = ""
 	password_field.text = ""
