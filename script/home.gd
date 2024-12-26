@@ -1,8 +1,8 @@
 extends Node
 
 func _logout() -> void:
-	Auth.accessToken = ""
-	Auth.refreshToken = ""
+	API.access_token = ""
+	API.refresh_token = ""
 	
 	self.visible = false
 

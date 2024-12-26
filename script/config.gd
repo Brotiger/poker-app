@@ -1,3 +1,3 @@
 extends Node
 
-@export var http_api_url: String
+var http_api_url = "http://localhost:8081"

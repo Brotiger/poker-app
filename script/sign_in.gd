@@ -1,6 +1,5 @@
 extends Node
 
-@export var config: Node
 @export var http_request: HTTPRequest
 
 @export var email_field: Node
@@ -22,8 +21,8 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 		var data = JSON.parse_string(body.get_string_from_utf8())
 		
 		if response_code == 200:
-			Auth.accessToken = data.accessToken
-			Auth.refreshToken = data.refreshToken
+			API.access_token = data.accessToken
+			API.refresh_token = data.refreshToken
 			
 			self._hide()
 			home.visible = true
@@ -39,7 +38,6 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 				email_field.Error()
 			elif data.has("errors"):
 				if data.errors.has("email"):
-					print("+++")
 					email_field.Error()
 				else:
 					email_field.Default()
@@ -50,7 +48,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 					password_field.Default()
 
 func _on_sign_in_pressed() -> void:
-	var url = config.http_api_url + endpoint
+	var url = Config.http_api_url + endpoint
 	var body = JSON.stringify({
 		"email": email_field.text,
 		"password": password_field.text

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0domjaumvrmy"]
+[gd_scene load_steps=15 format=3 uid="uid://0domjaumvrmy"]
 
 [ext_resource type="Script" path="res://script/sign_in.gd" id="1_6jucl"]
 [ext_resource type="PackedScene" uid="uid://bx6vfrxqhk5dw" path="res://object/gui/element/notification/warn_notification.tscn" id="2_u0os0"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cadurnpifdfnu" path="res://object/gui/element/window/edit_line.tscn" id="4_rt0ek"]
 [ext_resource type="PackedScene" uid="uid://bnxr6mjoqit3i" path="res://object/gui/element/window/button.tscn" id="5_lhffv"]
 [ext_resource type="PackedScene" uid="uid://cios2hxataogd" path="res://object/gui/element/window/label.tscn" id="6_tcv2o"]
-[ext_resource type="Script" path="res://script/config.gd" id="8_yulmc"]
 [ext_resource type="PackedScene" uid="uid://dlacs3t44bpef" path="res://object/gui/element/skull.tscn" id="9_6caeg"]
 [ext_resource type="Script" path="res://script/restore_password/restore.gd" id="9_wn2xw"]
 [ext_resource type="PackedScene" uid="uid://o5samspmd8ot" path="res://object/gui/element/wax_seal.tscn" id="10_bbmgh"]
@@ -29,8 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Config" type="Node" parent="."]
-script = ExtResource("8_yulmc")
-http_api_url = "http://localhost:8081"
 
 [node name="NotificationContainer" type="Node" parent="."]
 
@@ -339,13 +336,12 @@ offset_top = -19.798
 offset_right = 19.782
 offset_bottom = 20.202
 
-[node name="SignIn" parent="Auth" node_paths=PackedStringArray("config", "http_request", "email_field", "password_field", "home", "notification_container") instance=ExtResource("3_movji")]
+[node name="SignIn" parent="Auth" node_paths=PackedStringArray("http_request", "email_field", "password_field", "home", "notification_container") instance=ExtResource("3_movji")]
 offset_left = -540.5
 offset_top = -455.0
 offset_right = 540.5
 offset_bottom = 455.0
 script = ExtResource("1_6jucl")
-config = NodePath("../../Config")
 http_request = NodePath("MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/SignIn/HTTPRequest")
 email_field = NodePath("MarginContainer/VBoxContainer/MarginContainer/Email")
 password_field = NodePath("MarginContainer/VBoxContainer/MarginContainer2/Password")
@@ -484,9 +480,9 @@ offset_bottom = -7.28308
 
 [node name="Home" parent="Game" instance=ExtResource("3_movji")]
 visible = false
-offset_left = -407.5
+offset_left = -493.0
 offset_top = -493.5
-offset_right = 407.5
+offset_right = 493.0
 offset_bottom = 493.5
 script = ExtResource("14_1cqkn")
 
@@ -525,7 +521,7 @@ size_flags_horizontal = 4
 
 [node name="Label" parent="Game/Home/MarginContainer/VBoxContainer" instance=ExtResource("6_tcv2o")]
 layout_mode = 2
-text = "Меню"
+text = "Главное меню"
 
 [node name="CreateGameButton" parent="Game/Home/MarginContainer/VBoxContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
