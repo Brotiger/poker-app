@@ -1,19 +1,23 @@
-[gd_scene load_steps=15 format=3 uid="uid://0domjaumvrmy"]
+[gd_scene load_steps=19 format=3 uid="uid://0domjaumvrmy"]
 
-[ext_resource type="Script" path="res://script/sign_in.gd" id="1_6jucl"]
+[ext_resource type="Script" path="res://script/auth/sign_in.gd" id="1_6jucl"]
+[ext_resource type="Script" path="res://script/element/notification_container.gd" id="1_dw6wt"]
 [ext_resource type="PackedScene" uid="uid://bx6vfrxqhk5dw" path="res://object/gui/element/notification/warn_notification.tscn" id="2_u0os0"]
 [ext_resource type="PackedScene" uid="uid://bmsoqdgrkyhac" path="res://object/gui/element/notification/error_notification.tscn" id="3_0vg1k"]
 [ext_resource type="PackedScene" uid="uid://cpti17vs6jckc" path="res://object/gui/element/window/window.tscn" id="3_movji"]
-[ext_resource type="Script" path="res://script/sign_up/register.gd" id="3_t7xvk"]
+[ext_resource type="Script" path="res://script/auth/sign_up/register.gd" id="3_t7xvk"]
 [ext_resource type="PackedScene" uid="uid://cadurnpifdfnu" path="res://object/gui/element/window/edit_line.tscn" id="4_rt0ek"]
 [ext_resource type="PackedScene" uid="uid://bnxr6mjoqit3i" path="res://object/gui/element/window/button.tscn" id="5_lhffv"]
 [ext_resource type="PackedScene" uid="uid://cios2hxataogd" path="res://object/gui/element/window/label.tscn" id="6_tcv2o"]
 [ext_resource type="PackedScene" uid="uid://dlacs3t44bpef" path="res://object/gui/element/skull.tscn" id="9_6caeg"]
-[ext_resource type="Script" path="res://script/restore_password/restore.gd" id="9_wn2xw"]
+[ext_resource type="Script" path="res://script/auth/restore_password/restore.gd" id="9_wn2xw"]
 [ext_resource type="PackedScene" uid="uid://o5samspmd8ot" path="res://object/gui/element/wax_seal.tscn" id="10_bbmgh"]
-[ext_resource type="Script" path="res://script/game_list.gd" id="12_mmltk"]
-[ext_resource type="Script" path="res://script/home.gd" id="14_1cqkn"]
-[ext_resource type="Script" path="res://script/create_game.gd" id="15_036u4"]
+[ext_resource type="Script" path="res://script/game/game_list.gd" id="12_mmltk"]
+[ext_resource type="Script" path="res://script/game/home.gd" id="14_1cqkn"]
+[ext_resource type="Script" path="res://script/game/create_game/create_game.gd" id="14_ge16f"]
+[ext_resource type="Script" path="res://script/game/create_game/max_players.gd" id="15_004nv"]
+[ext_resource type="Script" path="res://script/auth_api.gd" id="16_ugthp"]
+[ext_resource type="Script" path="res://script/api.gd" id="17_y2o6d"]
 
 [node name="Interface" type="Control"]
 layout_mode = 3
@@ -30,6 +34,9 @@ grow_vertical = 2
 [node name="Config" type="Node" parent="."]
 
 [node name="NotificationContainer" type="Node" parent="."]
+script = ExtResource("1_dw6wt")
+warn_notification = ExtResource("2_u0os0")
+error_notification = ExtResource("3_0vg1k")
 
 [node name="MarginContainer" type="MarginContainer" parent="NotificationContainer"]
 anchors_preset = 1
@@ -98,6 +105,7 @@ theme_override_constants/margin_bottom = 16
 [node name="Email" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
+clear_button_enabled = true
 
 [node name="MarginContainer5" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -107,6 +115,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Имя"
+clear_button_enabled = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -116,6 +125,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Пароль"
+clear_button_enabled = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -125,6 +135,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Повторите пароль"
+clear_button_enabled = true
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -177,6 +188,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Код"
+clear_button_enabled = true
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -244,6 +256,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Код"
+clear_button_enabled = true
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -304,6 +317,7 @@ theme_override_constants/margin_bottom = 16
 [node name="Email" parent="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
+clear_button_enabled = true
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -336,19 +350,18 @@ offset_top = -19.798
 offset_right = 19.782
 offset_bottom = 20.202
 
-[node name="SignIn" parent="Auth" node_paths=PackedStringArray("http_request", "email_field", "password_field", "home", "notification_container") instance=ExtResource("3_movji")]
+[node name="SignIn" parent="Auth" node_paths=PackedStringArray("email_field", "password_field", "home", "notification_container", "auth_api", "api") instance=ExtResource("3_movji")]
 offset_left = -540.5
 offset_top = -455.0
 offset_right = 540.5
 offset_bottom = 455.0
 script = ExtResource("1_6jucl")
-http_request = NodePath("MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/SignIn/HTTPRequest")
 email_field = NodePath("MarginContainer/VBoxContainer/MarginContainer/Email")
 password_field = NodePath("MarginContainer/VBoxContainer/MarginContainer2/Password")
 home = NodePath("../../Game/Home")
-notification_container = NodePath("../../NotificationContainer/MarginContainer/VBoxContainer")
-warn_notification = ExtResource("2_u0os0")
-error_notification = ExtResource("3_0vg1k")
+notification_container = NodePath("../../NotificationContainer")
+auth_api = NodePath("../../AuthAPI")
+api = NodePath("../../API")
 
 [node name="Skull" parent="Auth/SignIn" instance=ExtResource("9_6caeg")]
 layout_mode = 1
@@ -386,6 +399,7 @@ theme_override_constants/margin_bottom = 16
 [node name="Email" parent="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
+clear_button_enabled = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="Auth/SignIn/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -395,6 +409,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Пароль"
+clear_button_enabled = true
 secret = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="Auth/SignIn/MarginContainer/VBoxContainer"]
@@ -412,8 +427,6 @@ text = "Регистрация"
 layout_mode = 2
 text = "Вход"
 
-[node name="HTTPRequest" type="HTTPRequest" parent="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/SignIn"]
-
 [node name="RestorePassword" parent="Auth/SignIn/MarginContainer/VBoxContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -421,13 +434,14 @@ text = "Востановить пароль"
 
 [node name="Game" type="Node" parent="."]
 
-[node name="GameList" parent="Game" instance=ExtResource("3_movji")]
+[node name="GameList" parent="Game" node_paths=PackedStringArray("auth_api") instance=ExtResource("3_movji")]
 visible = false
 offset_left = -945.0
 offset_top = -738.5
 offset_right = 945.0
 offset_bottom = 738.5
 script = ExtResource("12_mmltk")
+auth_api = NodePath("../../AuthAPI")
 
 [node name="MarginContainer" type="MarginContainer" parent="Game/GameList"]
 layout_mode = 1
@@ -539,13 +553,18 @@ text = "Настройки"
 layout_mode = 2
 text = "Выход"
 
-[node name="CreateGame" parent="Game" instance=ExtResource("3_movji")]
+[node name="CreateGame" parent="Game" node_paths=PackedStringArray("notification_container", "name_field", "password_field", "max_players_field", "auth_api") instance=ExtResource("3_movji")]
 visible = false
 offset_left = -604.0
 offset_top = -561.0
 offset_right = 605.0
 offset_bottom = 585.0
-script = ExtResource("15_036u4")
+script = ExtResource("14_ge16f")
+notification_container = NodePath("../../NotificationContainer")
+name_field = NodePath("MarginContainer/VBoxContainer/MarginContainer/Name")
+password_field = NodePath("MarginContainer/VBoxContainer/MarginContainer2/Password")
+max_players_field = NodePath("MarginContainer/VBoxContainer/MarginContainer3/MaxPlayers")
+auth_api = NodePath("../../AuthAPI")
 
 [node name="Skull" parent="Game/CreateGame" instance=ExtResource("9_6caeg")]
 layout_mode = 1
@@ -585,6 +604,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Название комнаты"
+clear_button_enabled = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="Game/CreateGame/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -594,6 +614,8 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Пароль"
+clear_button_enabled = true
+secret = true
 
 [node name="Label2" parent="Game/CreateGame/MarginContainer/VBoxContainer" instance=ExtResource("6_tcv2o")]
 layout_mode = 2
@@ -604,31 +626,34 @@ text = "Количество игроков"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="EditLine" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer3" instance=ExtResource("4_rt0ek")]
+[node name="MaxPlayers" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer3" instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "3"
 placeholder_text = ""
 alignment = 1
 virtual_keyboard_type = 2
+error_border_color = Color(1, 0, 0, 0.607843)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Game/CreateGame/MarginContainer/VBoxContainer"]
+[node name="MaxPlayersButtonContainer" type="HBoxContainer" parent="Game/CreateGame/MarginContainer/VBoxContainer" node_paths=PackedStringArray("max_players_field")]
 layout_mode = 2
 size_flags_horizontal = 4
+script = ExtResource("15_004nv")
+max_players_field = NodePath("../MarginContainer3/MaxPlayers")
 
-[node name="Button" parent="Game/CreateGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_lhffv")]
+[node name="3" parent="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
 text = "3"
 
-[node name="Button2" parent="Game/CreateGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_lhffv")]
+[node name="4" parent="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
 text = "4"
 
-[node name="Button3" parent="Game/CreateGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_lhffv")]
+[node name="5" parent="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
 text = "5"
 
-[node name="Button4" parent="Game/CreateGame/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_lhffv")]
+[node name="6" parent="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
 text = "6"
 
@@ -644,6 +669,15 @@ text = "Назад"
 layout_mode = 2
 text = "Далее"
 
+[node name="AuthAPI" type="Node" parent="." node_paths=PackedStringArray("sing_in", "notification_container")]
+script = ExtResource("16_ugthp")
+sing_in = NodePath("../Auth/SignIn")
+notification_container = NodePath("../NotificationContainer")
+
+[node name="API" type="Node" parent="." node_paths=PackedStringArray("notification_container")]
+script = ExtResource("17_y2o6d")
+notification_container = NodePath("../NotificationContainer")
+
 [connection signal="pressed" from="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignUp/Register" method="_hide"]
 [connection signal="pressed" from="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignIn" method="_show"]
 [connection signal="pressed" from="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/RestorePassword/Restore" method="_hide"]
@@ -651,7 +685,6 @@ text = "Далее"
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/Register" to="Auth/SignUp/Register" method="_show"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/Register" to="Auth/SignIn" method="_hide"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/SignIn" to="Auth/SignIn" method="_on_sign_in_pressed"]
-[connection signal="request_completed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/SignIn/HTTPRequest" to="Auth/SignIn" method="_on_http_request_request_completed"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/RestorePassword" to="Auth/RestorePassword/Restore" method="_show"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/RestorePassword" to="Auth/SignIn" method="_hide"]
 [connection signal="pressed" from="Game/GameList/MarginContainer/Back" to="Game/GameList" method="_hide"]
@@ -662,5 +695,10 @@ text = "Далее"
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/GameListButton" to="Game/Home" method="_hide"]
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/LogoutButton" to="Auth/SignIn" method="_show"]
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/LogoutButton" to="Game/Home" method="_logout"]
+[connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer/3" to="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" method="_on_button_pressed" binds= [3]]
+[connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer/4" to="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" method="_on_button_pressed" binds= [4]]
+[connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer/5" to="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" method="_on_button_pressed" binds= [5]]
+[connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer/6" to="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" method="_on_button_pressed" binds= [6]]
 [connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/HBoxContainer2/Back" to="Game/Home" method="_show"]
 [connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/HBoxContainer2/Back" to="Game/CreateGame" method="_hide"]
+[connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/HBoxContainer2/Next" to="Game/CreateGame" method="_on_next_pressed"]

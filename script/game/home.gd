@@ -1,8 +1,8 @@
 extends Node
 
 func _logout() -> void:
-	API.access_token = ""
-	API.refresh_token = ""
+	$AuthAPI.access_token = ""
+	$AuthAPI.refresh_token = ""
 	
 	self.visible = false
 

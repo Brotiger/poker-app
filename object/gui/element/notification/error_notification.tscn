@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmsoqdgrkyhac"]
 
-[ext_resource type="Script" path="res://script/notification.gd" id="2_8gi48"]
+[ext_resource type="Script" path="res://script/element/notification.gd" id="2_8gi48"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86vt"]
 content_margin_left = 5.0
-content_margin_top = 5.0
+content_margin_top = 0.0
 content_margin_right = 5.0
-content_margin_bottom = 5.0
+content_margin_bottom = 7.0
 bg_color = Color(0.823529, 0.168627, 0.0823529, 0.568627)
 
 [node name="ErrorNotification" type="Label"]

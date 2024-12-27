@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cadurnpifdfnu"]
 
-[ext_resource type="Script" path="res://script/edit_line.gd" id="1_5bwed"]
+[ext_resource type="Script" path="res://script/element/edit_line.gd" id="1_5bwed"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc3x4"]
 content_margin_left = 10.0
