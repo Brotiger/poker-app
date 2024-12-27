@@ -30,13 +30,15 @@ func _on_next_pressed() -> void:
 		
 	var url = Config.http_api_url + endpoint	
 	var headers: Array[String] = ["Content-Type: application/json"]
-	var body = JSON.stringify({
+	var body = {
 		"name": name_field.text,
-		"password": password_field.text,
 		"max_players": int(max_players_field.text),
-	})
+	}
 	
-	self.auth_api.send_request(url, HTTPClient.METHOD_POST, headers, body, Callable(self, "_on_http_request_completed"))
+	if password_field.text != "":
+		body["password"] = password_field.text
+	
+	self.auth_api.send_request(url, HTTPClient.METHOD_POST, headers, JSON.stringify(body), Callable(self, "_on_http_request_completed"))
 
 func  _on_http_request_completed(result, response_code, headers, body) -> void:
 	var data = JSON.parse_string(body.get_string_from_utf8())

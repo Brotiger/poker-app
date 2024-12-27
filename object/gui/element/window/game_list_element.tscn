@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjx0i2eas2rew"]
+
+[ext_resource type="Script" path="res://script/element/game_list_element.gd" id="1_rn1vj"]
+[ext_resource type="PackedScene" uid="uid://cadurnpifdfnu" path="res://object/gui/element/window/edit_line.tscn" id="2_077sd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lj35"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 0.568627)
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 0.72549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxx56"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 0.568627)
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 0.72549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i23c"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 0.568627)
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 0.72549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtotx"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 0.568627)
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 0.72549)
+
+[node name="GameListElement" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_rn1vj")
+error_color = Color(1, 0, 0, 0.607843)
+success_color = Color(0, 1, 0, 0.607843)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Name" parent="HBoxContainer" instance=ExtResource("2_077sd")]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_styles/read_only = SubResource("StyleBoxFlat_4lj35")
+text = "Название комнаты"
+editable = false
+
+[node name="Players" parent="HBoxContainer" instance=ExtResource("2_077sd")]
+layout_mode = 2
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_styles/read_only = SubResource("StyleBoxFlat_jxx56")
+text = "0/6"
+alignment = 1
+editable = false
+
+[node name="Type" parent="HBoxContainer" instance=ExtResource("2_077sd")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_styles/read_only = SubResource("StyleBoxFlat_3i23c")
+text = "Приватный"
+alignment = 1
+editable = false
+
+[node name="Status" parent="HBoxContainer" instance=ExtResource("2_077sd")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_styles/read_only = SubResource("StyleBoxFlat_gtotx")
+text = "Ожидание"
+alignment = 1
+editable = false
