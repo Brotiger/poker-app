@@ -492,13 +492,15 @@ offset_top = -47.2831
 offset_right = 0.759888
 offset_bottom = -7.28308
 
-[node name="Home" parent="Game" instance=ExtResource("3_movji")]
+[node name="Home" parent="Game" node_paths=PackedStringArray("auth_api", "sing_in") instance=ExtResource("3_movji")]
 visible = false
 offset_left = -493.0
 offset_top = -493.5
 offset_right = 493.0
 offset_bottom = 493.5
 script = ExtResource("14_1cqkn")
+auth_api = NodePath("../../AuthAPI")
+sing_in = NodePath("../../Auth/SignIn")
 
 [node name="Skull" parent="Game/Home" instance=ExtResource("9_6caeg")]
 layout_mode = 1
@@ -693,7 +695,6 @@ notification_container = NodePath("../NotificationContainer")
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/CreateGameButton" to="Game/CreateGame" method="_show"]
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/GameListButton" to="Game/GameList" method="_show"]
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/GameListButton" to="Game/Home" method="_hide"]
-[connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/LogoutButton" to="Auth/SignIn" method="_show"]
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/LogoutButton" to="Game/Home" method="_logout"]
 [connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer/3" to="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" method="_on_button_pressed" binds= [3]]
 [connection signal="pressed" from="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer/4" to="Game/CreateGame/MarginContainer/VBoxContainer/MaxPlayersButtonContainer" method="_on_button_pressed" binds= [4]]

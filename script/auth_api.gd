@@ -70,6 +70,6 @@ func _refresh_http_request_completed(result, response_code, headers, body):
 		self.send_request(self.current_url, self.current_method, self.current_headers, self.current_body, self.current_callback)
 	else:
 		if response_code == 401:
-			sing_in.show()
+			self.sing_in.show()
 			notification_container.create_notification("Истекло время сессии.", notification_container.warn_notification)
 		self.current_callback.call(result, response_code, headers, body)
