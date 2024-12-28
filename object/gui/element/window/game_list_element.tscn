@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjx0i2eas2rew"]
+[gd_scene load_steps=10 format=3 uid="uid://cjx0i2eas2rew"]
 
 [ext_resource type="Script" path="res://script/element/game_list_element.gd" id="1_rn1vj"]
 [ext_resource type="PackedScene" uid="uid://cadurnpifdfnu" path="res://object/gui/element/window/edit_line.tscn" id="2_077sd"]
+[ext_resource type="Texture2D" uid="uid://criflhyp1ckc3" path="res://asset/icons/White-Icon/Locker-Locked.svg" id="3_bp4ak"]
+[ext_resource type="Texture2D" uid="uid://bl7s7hl380imr" path="res://asset/icons/White-Icon/Locker-Unlocked.svg" id="4_hiqvd"]
+[ext_resource type="Script" path="res://script/element/button.gd" id="4_ma2rt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lj35"]
 content_margin_left = 10.0
@@ -17,16 +20,16 @@ bg_color = Color(0, 0, 0, 0.568627)
 border_width_bottom = 15
 border_color = Color(0, 0, 0, 0.72549)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i23c"]
-content_margin_left = 10.0
-content_margin_right = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mqbk"]
+content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color(0, 0, 0, 0.568627)
 border_width_bottom = 15
 border_color = Color(0, 0, 0, 0.72549)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtotx"]
-content_margin_left = 10.0
-content_margin_right = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_usq68"]
+content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color(0, 0, 0, 0.568627)
 border_width_bottom = 15
 border_color = Color(0, 0, 0, 0.72549)
@@ -43,7 +46,7 @@ success_color = Color(0, 1, 0, 0.607843)
 layout_mode = 2
 
 [node name="Name" parent="HBoxContainer" instance=ExtResource("2_077sd")]
-custom_minimum_size = Vector2(800, 0)
+custom_minimum_size = Vector2(1290, 0)
 layout_mode = 2
 theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
 theme_override_styles/read_only = SubResource("StyleBoxFlat_4lj35")
@@ -58,20 +61,27 @@ text = "0/6"
 alignment = 1
 editable = false
 
-[node name="Type" parent="HBoxContainer" instance=ExtResource("2_077sd")]
-custom_minimum_size = Vector2(300, 0)
+[node name="Private" type="Button" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
-theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
-theme_override_styles/read_only = SubResource("StyleBoxFlat_3i23c")
-text = "Приватный"
-alignment = 1
-editable = false
+theme_override_colors/icon_disabled_color = Color(1, 0.335514, 0.269596, 1)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8mqbk")
+disabled = true
+icon = ExtResource("3_bp4ak")
+script = ExtResource("4_ma2rt")
+normal_error_border_color = Color(1, 0, 0, 0.607843)
+disabled_error_border_color = Color(1, 0, 0, 0.607843)
+normal_success_border_color = Color(0, 1, 0, 0.607843)
+disabled_success_border_color = Color(0, 1, 0, 0.607843)
 
-[node name="Status" parent="HBoxContainer" instance=ExtResource("2_077sd")]
-custom_minimum_size = Vector2(250, 0)
+[node name="Public" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
-theme_override_styles/read_only = SubResource("StyleBoxFlat_gtotx")
-text = "Ожидание"
-alignment = 1
-editable = false
+theme_override_colors/icon_disabled_color = Color(0.461028, 1, 0.42935, 1)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_usq68")
+disabled = true
+icon = ExtResource("4_hiqvd")
+script = ExtResource("4_ma2rt")
+normal_error_border_color = Color(1, 0, 0, 0.607843)
+disabled_error_border_color = Color(1, 0, 0, 0.607843)
+normal_success_border_color = Color(0, 1, 0, 0.607843)
+disabled_success_border_color = Color(0, 1, 0, 0.607843)

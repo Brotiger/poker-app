@@ -25,19 +25,19 @@ func set_info(room_name: String, count_players: int, max_players: int, with_pass
 	$HBoxContainer/Players.text = str(self.count_players) + "/" + str(self.max_players)
 	
 	if with_password == true:
-		$HBoxContainer/Type.text = "Приватный"
+		$HBoxContainer/Private.visible = true
+		$HBoxContainer/Public.visible = false
 	else:
-		$HBoxContainer/Type.text = "Публичный"
-		
-	$HBoxContainer/Status.text = status_name[self.status]
+		$HBoxContainer/Private.visible = false
+		$HBoxContainer/Public.visible = true
 	
 	$HBoxContainer/Name.Success()
 	$HBoxContainer/Players.Success()
-	$HBoxContainer/Type.Success()
-	$HBoxContainer/Status.Success()
+	$HBoxContainer/Public.Success()
+	$HBoxContainer/Private.Success()
 		
 	if self.max_players == self.count_players or self.status != "waiting":
 		$HBoxContainer/Name.Error()
 		$HBoxContainer/Players.Error()
-		$HBoxContainer/Type.Error()
-		$HBoxContainer/Status.Error()
+		$HBoxContainer/Public.Error()
+		$HBoxContainer/Private.Error()

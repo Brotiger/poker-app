@@ -66,13 +66,11 @@ modulate_color = Color(0, 0, 0, 0.607843)
 
 [node name="Interface" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 7.0
-offset_right = 64.0
-offset_bottom = 7.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -147,41 +145,45 @@ text = "Регистрация"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Email" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
+[node name="Email" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Email"
 clear_button_enabled = true
+next_focus = NodePath("../../MarginContainer5/Username")
 
 [node name="MarginContainer5" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Username" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer5" instance=ExtResource("4_rt0ek")]
+[node name="Username" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer5" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Имя"
 clear_button_enabled = true
+next_focus = NodePath("../../MarginContainer2/Password")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Password" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_rt0ek")]
+[node name="Password" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer2" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Пароль"
 clear_button_enabled = true
+next_focus = NodePath("../../MarginContainer3/RepeatPassword")
 
 [node name="MarginContainer3" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Password" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer3" instance=ExtResource("4_rt0ek")]
+[node name="RepeatPassword" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer3" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Повторите пароль"
 clear_button_enabled = true
+submit_button = NodePath("../../MarginContainer4/HBoxContainer/Next")
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -230,11 +232,12 @@ text = "Подтверждение"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Email" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
+[node name="Email" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Код"
 clear_button_enabled = true
+submit_button = NodePath("../../MarginContainer4/HBoxContainer/Next")
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -298,11 +301,12 @@ text = "Подтверждение"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Email" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
+[node name="Email" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Код"
 clear_button_enabled = true
+submit_button = NodePath("../../MarginContainer4/HBoxContainer/Next")
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -360,11 +364,12 @@ text = "Востановление"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Email" parent="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
+[node name="Email" parent="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Email"
 clear_button_enabled = true
+submit_button = NodePath("../../MarginContainer4/HBoxContainer/Next")
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -443,22 +448,24 @@ text = "Расписной покер"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Email" parent="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
+[node name="Email" parent="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Email"
 clear_button_enabled = true
+next_focus = NodePath("../../MarginContainer2/Password")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Auth/SignIn/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Password" parent="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_rt0ek")]
+[node name="Password" parent="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer2" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Пароль"
 clear_button_enabled = true
 secret = true
+submit_button = NodePath("../../MarginContainer3/HBoxContainer/SignIn")
 
 [node name="MarginContainer3" type="MarginContainer" parent="Auth/SignIn/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -482,7 +489,7 @@ text = "Востановить пароль"
 
 [node name="Game" type="Node" parent="."]
 
-[node name="GameList" parent="Game" node_paths=PackedStringArray("auth_api", "game_list_container") instance=ExtResource("3_movji")]
+[node name="GameList" parent="Game" node_paths=PackedStringArray("auth_api", "game_list_container", "search_string") instance=ExtResource("3_movji")]
 visible = false
 offset_left = -945.0
 offset_top = -738.5
@@ -492,6 +499,7 @@ script = ExtResource("12_mmltk")
 auth_api = NodePath("../../AuthAPI")
 game_list_container = NodePath("ScrollContainer/VBoxContainer")
 game_list_element = ExtResource("14_i1s0g")
+search_string = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Search")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Game/GameList"]
 layout_mode = 1
@@ -536,11 +544,13 @@ text = "Список игр"
 [node name="HBoxContainer" type="HBoxContainer" parent="Game/GameList/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Search" parent="Game/GameList/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_rt0ek")]
+[node name="Search" parent="Game/GameList/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 custom_minimum_size = Vector2(1490, 0)
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Поиск"
+clear_button_enabled = true
+submit_button = NodePath("../Button")
 
 [node name="Button" type="Button" parent="Game/GameList/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -682,22 +692,24 @@ text = "Создание игры"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Name" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_rt0ek")]
+[node name="Name" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Название комнаты"
 clear_button_enabled = true
+next_focus = NodePath("../../MarginContainer2/Password")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Game/CreateGame/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Password" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_rt0ek")]
+[node name="Password" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer2" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Пароль"
 clear_button_enabled = true
 secret = true
+next_focus = NodePath("../../MarginContainer3/MaxPlayers")
 
 [node name="Label2" parent="Game/CreateGame/MarginContainer/VBoxContainer" instance=ExtResource("6_tcv2o")]
 layout_mode = 2
@@ -708,12 +720,13 @@ text = "Количество игроков"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="MaxPlayers" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer3" instance=ExtResource("4_rt0ek")]
+[node name="MaxPlayers" parent="Game/CreateGame/MarginContainer/VBoxContainer/MarginContainer3" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "3"
 alignment = 1
 virtual_keyboard_type = 2
+submit_button = NodePath("../../HBoxContainer2/Next")
 
 [node name="MaxPlayersButtonContainer" type="HBoxContainer" parent="Game/CreateGame/MarginContainer/VBoxContainer" node_paths=PackedStringArray("max_players_field")]
 layout_mode = 2
@@ -765,10 +778,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -238.0
-offset_top = -67.0
-offset_right = -81.0
-offset_bottom = -25.0
+offset_left = 1735.0
+offset_top = 1014.0
+offset_right = 1892.0
+offset_bottom = 1056.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
@@ -779,20 +792,24 @@ script = ExtResource("20_ix4n2")
 script = ExtResource("22_srbnm")
 
 [node name="Exit" type="Button" parent="Navbar"]
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 108.0
-offset_bottom = 108.0
+offset_left = 23.0
+offset_top = 30.0
+offset_right = 116.0
+offset_bottom = 123.0
 theme_override_styles/hover = SubResource("StyleBoxTexture_am8yf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_pvb34")
 theme_override_styles/normal = SubResource("StyleBoxTexture_oyvmh")
 icon_alignment = 1
 
 [node name="Settings" type="Button" parent="Navbar"]
-offset_left = 15.0
-offset_top = 130.0
-offset_right = 108.0
-offset_bottom = 223.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -129.0
+offset_right = 129.0
+offset_bottom = -36.0
+grow_vertical = 0
 theme_override_styles/hover = SubResource("StyleBoxTexture_qw4dx")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_qro1v")
 theme_override_styles/normal = SubResource("StyleBoxTexture_b6uxx")
@@ -807,6 +824,8 @@ icon_alignment = 1
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/SignIn" to="Auth/SignIn" method="_on_sign_in_pressed"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/RestorePassword" to="Auth/RestorePassword/Restore" method="_show"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/RestorePassword" to="Auth/SignIn" method="_hide"]
+[connection signal="scroll_ended" from="Game/GameList/ScrollContainer" to="Game/GameList" method="get_games"]
+[connection signal="pressed" from="Game/GameList/MarginContainer/VBoxContainer/HBoxContainer/Button" to="Game/GameList" method="_on_button_pressed"]
 [connection signal="pressed" from="Game/GameList/Back" to="Game/GameList" method="_hide"]
 [connection signal="pressed" from="Game/GameList/Back" to="Game/Home" method="_show"]
 [connection signal="pressed" from="Game/Home/MarginContainer/VBoxContainer/CreateGameButton" to="Game/Home" method="_hide"]
