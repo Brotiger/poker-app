@@ -40,7 +40,7 @@ func _on_http_request_completed(result, response_code, headers, body):
 		for game in data.games:
 			var game_list_element_instance = game_list_element.instantiate()
 			self.game_list_container.add_child(game_list_element_instance)
-			game_list_element_instance.set_info(game.name, game.countPlayers, game.maxPlayers, game.withPassword, game.status)
+			game_list_element_instance.set_info(game.name, game.count_players, game.max_players, game.with_password, game.status)
 
 func _show() -> void:
 	self.get_games()

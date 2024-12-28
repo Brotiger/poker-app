@@ -1,24 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjx0i2eas2rew"]
+[gd_scene load_steps=8 format=3 uid="uid://cjx0i2eas2rew"]
 
 [ext_resource type="Script" path="res://script/element/game_list_element.gd" id="1_rn1vj"]
-[ext_resource type="PackedScene" uid="uid://cadurnpifdfnu" path="res://object/gui/element/window/edit_line.tscn" id="2_077sd"]
+[ext_resource type="PackedScene" uid="uid://cthk8sb71n314" path="res://object/gui/element/window/cell.tscn" id="2_6sr01"]
 [ext_resource type="Texture2D" uid="uid://criflhyp1ckc3" path="res://asset/icons/White-Icon/Locker-Locked.svg" id="3_bp4ak"]
 [ext_resource type="Texture2D" uid="uid://bl7s7hl380imr" path="res://asset/icons/White-Icon/Locker-Unlocked.svg" id="4_hiqvd"]
 [ext_resource type="Script" path="res://script/element/button.gd" id="4_ma2rt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lj35"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0, 0, 0, 0.568627)
-border_width_bottom = 15
-border_color = Color(0, 0, 0, 0.72549)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxx56"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0, 0, 0, 0.568627)
-border_width_bottom = 15
-border_color = Color(0, 0, 0, 0.72549)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mqbk"]
 content_margin_left = 5.0
@@ -45,21 +31,15 @@ success_color = Color(0, 1, 0, 0.607843)
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Name" parent="HBoxContainer" instance=ExtResource("2_077sd")]
+[node name="Name" parent="HBoxContainer" instance=ExtResource("2_6sr01")]
 custom_minimum_size = Vector2(1290, 0)
 layout_mode = 2
-theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
-theme_override_styles/read_only = SubResource("StyleBoxFlat_4lj35")
 text = "Название комнаты"
-editable = false
 
-[node name="Players" parent="HBoxContainer" instance=ExtResource("2_077sd")]
+[node name="Players" parent="HBoxContainer" instance=ExtResource("2_6sr01")]
 layout_mode = 2
-theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
-theme_override_styles/read_only = SubResource("StyleBoxFlat_jxx56")
 text = "0/6"
 alignment = 1
-editable = false
 
 [node name="Private" type="Button" parent="HBoxContainer"]
 visible = false

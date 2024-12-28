@@ -39,7 +39,7 @@ func send_request(url: String, method: HTTPClient.Method, headers: Array[String]
 
 func refresh_token_request():
 	var body = JSON.stringify({
-		"refreshToken": self.refresh_token,
+		"refresh_token": self.refresh_token,
 	})
 	
 	var url = Config.http_api_url + endpoint
