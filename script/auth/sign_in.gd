@@ -23,8 +23,8 @@ func _on_sign_in_pressed() -> void:
 func _on_http_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	var data = JSON.parse_string(body.get_string_from_utf8())
 	if response_code == 200:
-		self.auth_api.access_token = data.accessToken
-		self.auth_api.refresh_token = data.refreshToken
+		self.auth_api.access_token = data.access_token
+		self.auth_api.refresh_token = data.refresh_token
 			
 		self._hide()
 		self.home._show()

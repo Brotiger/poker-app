@@ -64,8 +64,8 @@ func _refresh_http_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var data = JSON.parse_string(body.get_string_from_utf8())
 
-		self.access_token = data.accessToken
-		self.refresh_token = data.refreshToken
+		self.access_token = data.access_token
+		self.refresh_token = data.refresh_token
 		
 		self.send_request(self.current_url, self.current_method, self.current_headers, self.current_body, self.current_callback)
 	else:
