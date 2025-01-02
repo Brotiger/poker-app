@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://0domjaumvrmy"]
+[gd_scene load_steps=38 format=3 uid="uid://0domjaumvrmy"]
 
 [ext_resource type="Script" path="res://script/auth/sign_in.gd" id="1_6jucl"]
 [ext_resource type="Script" path="res://script/element/notification_container.gd" id="1_dw6wt"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://o5samspmd8ot" path="res://object/gui/element/wax_seal.tscn" id="10_bbmgh"]
 [ext_resource type="Script" path="res://script/auth/sign_up/code.gd" id="11_4ycoh"]
 [ext_resource type="Script" path="res://script/game/game_list.gd" id="12_mmltk"]
+[ext_resource type="Script" path="res://script/auth/restore_password/code.gd" id="13_ho78p"]
 [ext_resource type="Script" path="res://script/game/home.gd" id="14_1cqkn"]
 [ext_resource type="Script" path="res://script/game/create_game/create_game.gd" id="14_ge16f"]
 [ext_resource type="PackedScene" uid="uid://cjx0i2eas2rew" path="res://object/gui/element/window/game_list_element.tscn" id="14_i1s0g"]
@@ -300,12 +301,19 @@ offset_bottom = 38.084
 
 [node name="RestorePassword" type="Node" parent="Auth"]
 
-[node name="Code" parent="Auth/RestorePassword" instance=ExtResource("3_movji")]
+[node name="Code" parent="Auth/RestorePassword" node_paths=PackedStringArray("API", "notification_container", "sign_in_form", "code_field", "password_field", "repeat_password_field") instance=ExtResource("3_movji")]
 visible = false
-offset_left = -486.5
-offset_top = -320.0
-offset_right = 486.5
-offset_bottom = 320.0
+offset_left = -486.0
+offset_top = -341.0
+offset_right = 487.0
+offset_bottom = 544.0
+script = ExtResource("13_ho78p")
+API = NodePath("../../../API")
+notification_container = NodePath("../../../NotificationContainer")
+sign_in_form = NodePath("../../SignIn")
+code_field = NodePath("MarginContainer/VBoxContainer/MarginContainer/Code")
+password_field = NodePath("MarginContainer/VBoxContainer/MarginContainer2/Password")
+repeat_password_field = NodePath("MarginContainer/VBoxContainer/MarginContainer3/RepeatPassword")
 
 [node name="MarginContainer" type="MarginContainer" parent="Auth/RestorePassword/Code"]
 layout_mode = 1
@@ -329,11 +337,35 @@ text = "Подтверждение"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Email" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
+[node name="Code" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Код"
 clear_button_enabled = true
+next_focus = NodePath("../../MarginContainer2/Password")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="Password" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer2" node_paths=PackedStringArray("next_focus") instance=ExtResource("4_rt0ek")]
+layout_mode = 2
+size_flags_horizontal = 1
+placeholder_text = "Новый пароль"
+clear_button_enabled = true
+secret = true
+next_focus = NodePath("../../MarginContainer3/RepeatPassword")
+
+[node name="MarginContainer3" type="MarginContainer" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="RepeatPassword" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer3" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
+layout_mode = 2
+size_flags_horizontal = 1
+placeholder_text = "Повторите пароль"
+clear_button_enabled = true
+secret = true
 submit_button = NodePath("../../MarginContainer4/HBoxContainer/Next")
 
 [node name="MarginContainer4" type="MarginContainer" parent="Auth/RestorePassword/Code/MarginContainer/VBoxContainer"]
@@ -357,18 +389,22 @@ layout_mode = 1
 
 [node name="WaxSeal" parent="Auth/RestorePassword/Code" instance=ExtResource("10_bbmgh")]
 layout_mode = 1
-offset_left = 354.5
-offset_top = 193.0
-offset_right = 394.5
-offset_bottom = 233.0
+offset_left = 356.5
+offset_top = 286.5
+offset_right = 396.5
+offset_bottom = 326.5
 
-[node name="Restore" parent="Auth/RestorePassword" instance=ExtResource("3_movji")]
+[node name="Restore" parent="Auth/RestorePassword" node_paths=PackedStringArray("email_field", "API", "code_form", "notification_container") instance=ExtResource("3_movji")]
 visible = false
 offset_left = -481.5
 offset_top = -329.0
 offset_right = 481.5
 offset_bottom = 329.0
 script = ExtResource("9_wn2xw")
+email_field = NodePath("MarginContainer/VBoxContainer/MarginContainer/Email")
+API = NodePath("../../../API")
+code_form = NodePath("../Code")
+notification_container = NodePath("../../../NotificationContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="Auth/RestorePassword/Restore"]
 layout_mode = 1
@@ -849,8 +885,12 @@ icon_alignment = 1
 [connection signal="pressed" from="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignUp/Register" method="_show"]
 [connection signal="pressed" from="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignUp/Code" method="_hide"]
 [connection signal="pressed" from="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Next" to="Auth/SignUp/Code" method="_on_next_pressed"]
+[connection signal="pressed" from="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/RestorePassword/Code" method="_hide"]
+[connection signal="pressed" from="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/RestorePassword/Restore" method="_show"]
+[connection signal="pressed" from="Auth/RestorePassword/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Next" to="Auth/RestorePassword/Code" method="_on_next_pressed"]
 [connection signal="pressed" from="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/RestorePassword/Restore" method="_hide"]
 [connection signal="pressed" from="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignIn" method="_show"]
+[connection signal="pressed" from="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Next" to="Auth/RestorePassword/Restore" method="_on_next_pressed"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/Register" to="Auth/SignUp/Register" method="_show"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/Register" to="Auth/SignIn" method="_hide"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/SignIn" to="Auth/SignIn" method="_on_sign_in_pressed"]
