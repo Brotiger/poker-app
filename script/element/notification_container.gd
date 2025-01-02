@@ -2,6 +2,7 @@ extends Node
 
 @export var warn_notification: PackedScene
 @export var error_notification: PackedScene
+@export var success_notification: PackedScene
 
 func create_notification(message: String, notification: PackedScene):
 	var notification_instance = notification.instantiate()

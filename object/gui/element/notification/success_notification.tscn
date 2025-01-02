@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx6vfrxqhk5dw"]
+[gd_scene load_steps=3 format=3 uid="uid://1nhyai1drm8a"]
 
-[ext_resource type="Script" path="res://script/element/notification.gd" id="2_bfrgd"]
+[ext_resource type="Script" path="res://script/element/notification.gd" id="1_s2k0a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5xv1"]
 content_margin_left = 5.0
 content_margin_top = 0.0
 content_margin_right = 5.0
 content_margin_bottom = 7.0
-bg_color = Color(1, 0.545098, 0.0313726, 0.568627)
+bg_color = Color(0.277641, 0.810119, 0, 0.568627)
 
 [node name="WarnNotification" type="Label"]
-offset_right = 472.0
+offset_right = 357.0
 offset_bottom = 63.0
 theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = SubResource("StyleBoxFlat_l5xv1")
-text = "Текст предупреждения."
+text = "Текст сообщения."
 autowrap_mode = 1
-script = ExtResource("2_bfrgd")
+script = ExtResource("1_s2k0a")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://0domjaumvrmy"]
+[gd_scene load_steps=37 format=3 uid="uid://0domjaumvrmy"]
 
 [ext_resource type="Script" path="res://script/auth/sign_in.gd" id="1_6jucl"]
 [ext_resource type="Script" path="res://script/element/notification_container.gd" id="1_dw6wt"]
@@ -6,12 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bmsoqdgrkyhac" path="res://object/gui/element/notification/error_notification.tscn" id="3_0vg1k"]
 [ext_resource type="PackedScene" uid="uid://cpti17vs6jckc" path="res://object/gui/element/window/window.tscn" id="3_movji"]
 [ext_resource type="Script" path="res://script/auth/sign_up/register.gd" id="3_t7xvk"]
+[ext_resource type="PackedScene" uid="uid://1nhyai1drm8a" path="res://object/gui/element/notification/success_notification.tscn" id="4_a76te"]
 [ext_resource type="PackedScene" uid="uid://cadurnpifdfnu" path="res://object/gui/element/window/edit_line.tscn" id="4_rt0ek"]
 [ext_resource type="PackedScene" uid="uid://bnxr6mjoqit3i" path="res://object/gui/element/window/button.tscn" id="5_lhffv"]
 [ext_resource type="PackedScene" uid="uid://cios2hxataogd" path="res://object/gui/element/window/label.tscn" id="6_tcv2o"]
 [ext_resource type="PackedScene" uid="uid://dlacs3t44bpef" path="res://object/gui/element/skull.tscn" id="9_6caeg"]
 [ext_resource type="Script" path="res://script/auth/restore_password/restore.gd" id="9_wn2xw"]
 [ext_resource type="PackedScene" uid="uid://o5samspmd8ot" path="res://object/gui/element/wax_seal.tscn" id="10_bbmgh"]
+[ext_resource type="Script" path="res://script/auth/sign_up/code.gd" id="11_4ycoh"]
 [ext_resource type="Script" path="res://script/game/game_list.gd" id="12_mmltk"]
 [ext_resource type="Script" path="res://script/game/home.gd" id="14_1cqkn"]
 [ext_resource type="Script" path="res://script/game/create_game/create_game.gd" id="14_ge16f"]
@@ -24,6 +26,20 @@
 [ext_resource type="Texture2D" uid="uid://d0qer5aw48sr1" path="res://asset/icons/White-Icon/Gear.svg" id="22_hopeg"]
 [ext_resource type="Script" path="res://script/navbar.gd" id="22_srbnm"]
 [ext_resource type="Texture2D" uid="uid://djshn4u621h43" path="res://asset/icons/White-Icon/Exit.svg" id="22_tc7hw"]
+
+[sub_resource type="GDScript" id="GDScript_qssx1"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ay1d"]
 content_margin_left = 20.0
@@ -74,12 +90,11 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Config" type="Node" parent="."]
-
 [node name="NotificationContainer" type="Node" parent="."]
 script = ExtResource("1_dw6wt")
 warn_notification = ExtResource("2_u0os0")
 error_notification = ExtResource("3_0vg1k")
+success_notification = ExtResource("4_a76te")
 
 [node name="MarginContainer" type="MarginContainer" parent="NotificationContainer"]
 anchors_preset = 1
@@ -97,14 +112,22 @@ layout_mode = 2
 [node name="Auth" type="Node" parent="."]
 
 [node name="SignUp" type="Node" parent="Auth"]
+script = SubResource("GDScript_qssx1")
 
-[node name="Register" parent="Auth/SignUp" instance=ExtResource("3_movji")]
+[node name="Register" parent="Auth/SignUp" node_paths=PackedStringArray("email_field", "username_field", "password_field", "repeat_password_field", "API", "code_form", "notification_container") instance=ExtResource("3_movji")]
 visible = false
 offset_left = -536.5
 offset_top = -487.5
 offset_right = 536.5
 offset_bottom = 487.5
 script = ExtResource("3_t7xvk")
+email_field = NodePath("MarginContainer/VBoxContainer/MarginContainer/Email")
+username_field = NodePath("MarginContainer/VBoxContainer/MarginContainer5/Username")
+password_field = NodePath("MarginContainer/VBoxContainer/MarginContainer2/Password")
+repeat_password_field = NodePath("MarginContainer/VBoxContainer/MarginContainer3/RepeatPassword")
+API = NodePath("../../../API")
+code_form = NodePath("../Code")
+notification_container = NodePath("../../../NotificationContainer")
 
 [node name="Skull" parent="Auth/SignUp/Register" instance=ExtResource("9_6caeg")]
 layout_mode = 1
@@ -203,12 +226,17 @@ text = "Далее"
 [node name="MarginContainer6" type="MarginContainer" parent="Auth/SignUp/Register/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Code" parent="Auth/SignUp" instance=ExtResource("3_movji")]
+[node name="Code" parent="Auth/SignUp" node_paths=PackedStringArray("API", "code_field", "notification_container", "sign_in_form") instance=ExtResource("3_movji")]
 visible = false
 offset_left = -495.5
 offset_top = -324.5
 offset_right = 495.5
 offset_bottom = 324.5
+script = ExtResource("11_4ycoh")
+API = NodePath("../../../API")
+code_field = NodePath("MarginContainer/VBoxContainer/MarginContainer/Code")
+notification_container = NodePath("../../../NotificationContainer")
+sign_in_form = NodePath("../../SignIn")
 
 [node name="MarginContainer" type="MarginContainer" parent="Auth/SignUp/Code"]
 layout_mode = 1
@@ -232,7 +260,7 @@ text = "Подтверждение"
 layout_mode = 2
 theme_override_constants/margin_bottom = 16
 
-[node name="Email" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
+[node name="Code" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("submit_button") instance=ExtResource("4_rt0ek")]
 layout_mode = 2
 size_flags_horizontal = 1
 placeholder_text = "Код"
@@ -249,7 +277,7 @@ size_flags_horizontal = 4
 
 [node name="Back" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
-text = "Далее"
+text = "Назад"
 
 [node name="Next" parent="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer" instance=ExtResource("5_lhffv")]
 layout_mode = 2
@@ -817,6 +845,10 @@ icon_alignment = 1
 
 [connection signal="pressed" from="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignUp/Register" method="_hide"]
 [connection signal="pressed" from="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignIn" method="_show"]
+[connection signal="pressed" from="Auth/SignUp/Register/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Next" to="Auth/SignUp/Register" method="_on_next_pressed"]
+[connection signal="pressed" from="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignUp/Register" method="_show"]
+[connection signal="pressed" from="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignUp/Code" method="_hide"]
+[connection signal="pressed" from="Auth/SignUp/Code/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Next" to="Auth/SignUp/Code" method="_on_next_pressed"]
 [connection signal="pressed" from="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/RestorePassword/Restore" method="_hide"]
 [connection signal="pressed" from="Auth/RestorePassword/Restore/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/Back" to="Auth/SignIn" method="_show"]
 [connection signal="pressed" from="Auth/SignIn/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/Register" to="Auth/SignUp/Register" method="_show"]
